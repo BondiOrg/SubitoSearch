@@ -31,12 +31,12 @@ namespace Application
         void ScrapeSubito()
         {
             var whereToScrape = new ConcurrentBag<string> {
-        "milano",
-        "varese",
-        "como",
-        "novara",
-        "monza"
-    };
+                "milano",
+                "varese",
+                "como",
+                "novara",
+                "monza"
+            };
             string what = "supporto+tastiera"; // "cassettiera";
 
             var subitoProducts = new ConcurrentBag<SubitoProduct>();
@@ -84,8 +84,16 @@ namespace Application
                             var distance = GetDistance("legnano", city);
                             var spedizioneDisponibile = (productHTMLElement.QuerySelector("span.shipping-badge") != null ? "yes" : "");
 
-                            var subitoProduct = new SubitoProduct() { Url = url, Image = image, Title = title, 
-                                City = city, Prov = prov, Price = GetPrice(price), Distance = distance };
+                            var subitoProduct = new SubitoProduct()
+                            {
+                                Url = url,
+                                Image = image,
+                                Title = title,
+                                City = city,
+                                Prov = prov,
+                                Price = GetPrice(price),
+                                Distance = distance
+                            };
                             // adding the object containing the scraped data to the list 
                             subitoProducts.Add(subitoProduct);
                         }
